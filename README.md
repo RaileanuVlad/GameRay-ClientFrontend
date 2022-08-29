@@ -1,6 +1,7 @@
 # Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.4.
+Online video game shop web app. Created using .NET, MSSQL, Angular and Azure.
+Frontend where clients can purchase video games online. University project.
 
 ## Development server
 
