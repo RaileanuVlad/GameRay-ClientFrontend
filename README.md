@@ -1,6 +1,5 @@
 # Frontend
 
-Online video game store web app. Created using .NET, MSSQL, Angular and Azure.
 Frontend where clients can purchase video games online. University project.
 
 ## Development server
