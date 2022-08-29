@@ -1,0 +1,67 @@
+<div bsModal class="modal fade" #psDetailModal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="psDetailModal"
+  aria-hidden="true">
+  <div id="bigDiv" class="modal-dialog" role="document">
+    <div class="modal-content" style="background-color:black">
+
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">{{game.name}}</h4>
+        <button type="button" class="close" (click)="modal.hide()">
+          <i class="fa-solid fa-x"></i>
+        </button>
+      </div>
+
+
+      <div class="modal-body p-0">
+
+        <img class="rounded" [src]="game.banLink" alt="Image">
+        <div class="container p-3">
+          <div class="row">
+            <div class="col-6">
+              <table class="table table-bordered text-center">
+                <thead>
+                  <tr>
+                    <th colspan="2">Specifications</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                    <td>Minimum</td>
+                    <td>Recommended</td>
+                  </tr>
+                  <tr *ngFor="let stuff of minimum; let i = index">
+                    <td>{{ minimum[i]}}</td>
+                    <td>{{ recommended[i] }}</td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+            <div class="col-6">
+              <p>Developer:<br>{{game.developerName}}</p>
+              <p>Categories:<br><span *ngFor="let category of game.categoryName; let i=index"> {{category}}<span
+                    *ngIf="i<game.categoryName.length-1">, </span></span></p>
+              <p>Description:<br>{{game.description}}</p>
+              <p>Total number of page views: {{game.views}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="container p-0">
+          <div class="row">
+            <div class="col-6">
+              <span style="float:left; color:red" *ngIf="!this.currentUser">Please log in to purchase products</span>
+            </div>
+            <div class="col-6">
+
+              <button style="float:right; display:inline" [disabled]="!this.currentUser" type="button" class="btn"
+                (click)="addCart(game)">Add to
+                cart - {{(game.price*(100-game.sale)/100) | number : '1.2-2'}}$</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,71 @@
+<div bsModal class="modal fade" #CartModal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="CartModal"
+  aria-hidden="true">
+  <div id="bigDiv" class="modal-dialog" role="document">
+    <div class="modal-content" style="background-color:black">
+
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel"  *ngIf="!paid">Your cart</h4>
+        <h4 class="modal-title" id="myModalLabel"  *ngIf="paid">Successful</h4>
+        <button type="button" class="close" (click)="CartModal.hide()">
+          <i class="fa-solid fa-x"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div *ngIf="paid">
+          <h2 class="text-center"> Thank you for your purchase!<br>Here are you game codes: <br><br></h2>
+          <ng-container *ngFor="let product of products; let i = index">
+            <h5 class="text-center">{{product.name}}({{product.platform}}) - {{codes[i]}}</h5>
+          </ng-container>
+          <h3 class="text-center"> <br>You can also find them in your profile.</h3>
+        </div>
+
+        <table class="table" *ngIf="!paid">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Game name</th>
+              <th>Platform</th>
+              <th>Price</th>
+              <th>Remove</th>
+            </tr>
+          </thead>
+
+
+          <tbody>
+            <tr *ngFor="let product of products; let i = index">
+              <td>{{i+1}}</td>
+              <td>{{product.name}}</td>
+              <td>{{product.platform}}</td>
+              <td>{{(product.price*(100-product.sale)/100) | number : '1.2-2'}}$</td>
+              <td>
+                <a (click)="delete(product.id, (product.price*(100-product.sale)/100))"><i
+                    class="fa-solid fa-trash"></i></a>
+              </td>
+            </tr>
+
+            <tr>
+              <td></td>
+              <td></td>
+              <td>Total</td>
+              <td>{{ sum | number : '1.2-2'}}$</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn" (click)="removeAll()" *ngIf="!paid">
+          Remove all
+        </button>
+        <button type="button" class="btn" (click)="checkout()" *ngIf="!paid">
+          Checkout
+        </button>
+        <button type="button" class="btn" (click)="CartModal.hide()" *ngIf="paid">
+          Got it!
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

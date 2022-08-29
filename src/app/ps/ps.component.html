@@ -1,0 +1,78 @@
+<br><br><br>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-2"></div>
+          <div class="col-8">
+            <div id="leftDiv">
+              <div class="form-group">
+                <input [(ngModel)]="searchName" type="text" class="form-control" id="searchFilter"
+                  aria-describedby="Search" placeholder="Search by name">
+              </div>
+              <br>
+              <div class="form-group">
+                <label for="developerFilter">Filter by developer:</label>
+                <select id="developerFilter" class="form-select" [(ngModel)]="searchDeveloper">
+                  <option [ngValue]=""></option>
+                  <option *ngFor="let developer of developers" [ngValue]="developer.name">
+                    {{developer.name}}
+                  </option>
+                </select>
+              </div>
+              <br>
+              <label>Filter by min and max price:</label>
+              <div class="row">
+                <div class="col">
+                  <input [(ngModel)]="searchPrice1" type="number" class="form-control" placeholder="Min">
+                </div>
+                <div class="col">
+                  <input [(ngModel)]="searchPrice2" type="number" class="form-control" placeholder="Max">
+                </div>
+              </div>
+              <br><br>
+              <label>Filter by category:</label>
+              <div class="form-check text-left" *ngFor="let category of categories">
+                <input type="checkbox" class="form-check-input" [id]="category.id"
+                  (change)="onChange(category.name, $event.target.checked)">
+                <label class="form-check-label" [for]="category.id">{{category.name}}</label>
+              </div>
+
+            </div>
+          </div>
+          <div class="col-2"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-9 text-left p-0" id="rightDiv">
+
+      <ng-container
+        *ngFor="let game of games | searchFilter: {name: searchName} | developerFilter: {developerName: searchDeveloper} 
+                                  | priceFilter: {price1: searchPrice1, price2: searchPrice2} | categoryFilter: {categoryName: selectedCategories}">
+
+        <div class="card m-3" style="display:inline-block">
+          <a (click)="showDM(game.id)">
+            <img class="card-img-top" [src]="game.imgLink" alt="Image">
+            <div class="card-body text-center">
+              <h5 class="card-title">{{game.name}}</h5>
+              <p class="card-text" style="float:left">{{game.developerName}}</p>
+              <p class="card-text" style="float:right" *ngIf="game.sale==0">{{game.price}}$</p>
+              <p class="card-text" style="float:right" *ngIf="game.sale!=0">
+                <del>{{game.price}}$</del>&nbsp;<ins>{{(game.price*(100-game.sale)/100) | number :
+                  '1.2-2'}}$</ins>&nbsp;
+              </p>
+              <div *ngIf="game.sale!=0"
+                style="background-color:rgb(228, 58, 54); border: 1px solid black; border-radius:5px; padding:2px; position:absolute; right: 7%; bottom: 16%;">
+                {{game.sale}}% OFF</div>
+            </div>
+          </a>
+        </div>
+      </ng-container>
+
+    </div>
+  </div>
+
+
+  <app-ps-detail-modal #psDetailModal></app-ps-detail-modal>

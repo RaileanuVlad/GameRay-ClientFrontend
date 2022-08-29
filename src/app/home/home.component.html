@@ -1,0 +1,80 @@
+<div class="container-fluid p-5">
+    <div class="row mb-5">
+        <div class="col-3"></div>
+        <div class="col-6 container-fluid">
+            <h1 class="text-left">Most popular games:</h1>
+            <ngb-carousel pauseOnHover="true" animation="false">
+                <ng-template ngbSlide *ngFor="let gameViews of gamesViews">
+                    <div class="picsum-img-wrapper">
+                        <a (click)="showDM(gameViews.id)">
+                            <img id="banImg" [src]="gameViews.banLink" alt="Random first slide" class="w-100">
+                        </a>
+                    </div>
+                    <div class="carousel-caption">
+                        <h3>{{gameViews.name}} ({{gameViews.platform}})</h3>
+                        <p id="captionP">{{gameViews.developerName}} - {{(gameViews.price*(100-gameViews.sale)/100) |
+                            number : '1.2-2'}}$</p>
+                    </div>
+                </ng-template>
+            </ngb-carousel>
+        </div>
+        <div class="col-3"></div>
+    </div>
+    <div class="row my-5">
+        <div class="col-1"></div>
+        <div class="col-10 text-center" id="salediv">
+            <h1 class="text-center mt-5">Biggest price drops:</h1>
+            <ng-container *ngFor="let gameSale of gamesSale">
+
+                <div class="card m-3" style="display:inline-block">
+                    <a (click)="showDM(gameSale.id)">
+                        <img id="cardImg" class="card-img-top" [src]="gameSale.imgLink" alt="Image">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">{{gameSale.name}}</h5>
+                            <p class="card-text" style="float:left">{{gameSale.developerName}}</p>
+                            <p class="card-text" style="float:right" *ngIf="gameSale.sale==0">{{gameSale.price}}$</p>
+                            <p class="card-text" style="float:right" *ngIf="gameSale.sale!=0">
+                                <del>{{gameSale.price}}$</del>&nbsp;<ins>{{(gameSale.price*(100-gameSale.sale)/100) |
+                                    number :
+                                    '1.2-2'}}$</ins>&nbsp;
+                            </p>
+                            <div *ngIf="gameSale.sale!=0"
+                                style="background-color:rgb(228, 58, 54); border: 1px solid black; border-radius:5px; padding:2px; position:absolute; right: 7%; bottom: 16%;">
+                                {{gameSale.sale}}% OFF</div>
+                        </div>
+                    </a>
+                </div>
+            </ng-container>
+        </div>
+        <div class="col-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10 text-center" id="sellerdiv">
+            <h1 class="text-center mt-5">Best sellers:</h1>
+            <ng-container *ngFor="let gameBest of gamesBest">
+
+                <div class="card m-3" style="display:inline-block">
+                    <a (click)="showDM(gameBest.id)">
+                        <img id="cardImg" class="card-img-top" [src]="gameBest.imgLink" alt="Image">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">{{gameBest.name}}</h5>
+                            <p class="card-text" style="float:left">{{gameBest.developerName}}</p>
+                            <p class="card-text" style="float:right" *ngIf="gameBest.sale==0">{{gameBest.price}}$</p>
+                            <p class="card-text" style="float:right" *ngIf="gameBest.sale!=0">
+                                <del>{{gameBest.price}}$</del>&nbsp;<ins>{{(gameBest.price*(100-gameBest.sale)/100) |
+                                    number :
+                                    '1.2-2'}}$</ins>&nbsp;
+                            </p>
+                            <div *ngIf="gameBest.sale!=0"
+                                style="background-color:rgb(228, 58, 54); border: 1px solid black; border-radius:5px; padding:2px; position:absolute; right: 7%; bottom: 16%;">
+                                {{gameBest.sale}}% OFF</div>
+                        </div>
+                    </a>
+                </div>
+            </ng-container>
+        </div>
+        <div class="col-1"></div>
+    </div>
+</div>
+<app-home-detail-modal #homeDetailModal></app-home-detail-modal>

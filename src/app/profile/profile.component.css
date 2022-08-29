@@ -1,0 +1,53 @@
+#bigDiv {
+  border: 3px solid rgb(80, 185, 255);
+  border-radius: 10px;
+  box-shadow: 0 0 50px rgb(80, 185, 255);
+}
+
+.modal-header {
+  border-bottom-color: rgb(80, 185, 255);
+}
+.modal-footer {
+  border-top-color: rgb(80, 185, 255);
+}
+
+.btn {
+  background-color: black;
+  color: rgb(80, 185, 255);
+}
+
+.modal-dialog {
+  display: table;
+  overflow-y: auto;
+  overflow-x: auto;
+  width: auto;
+}
+
+img {
+  width: 850px;
+  height: 315px;
+  object-fit: fill;
+}
+
+.table {
+  width: auto;
+  max-width: 90vw;
+  color: rgb(80, 185, 255);
+}
+
+#leftDiv {
+  padding: 10px;
+  border: 3px solid rgb(80, 185, 255);
+  border-radius: 10px;
+  box-shadow: 0 0 50px rgb(80, 185, 255);
+  color: black !important;
+  background-color: rgb(80, 185, 255);
+}
+
+.col-6 h4 {
+  color: rgb(80, 185, 255);
+}
+
+h5 {
+  color: rgb(80, 185, 255);
+}

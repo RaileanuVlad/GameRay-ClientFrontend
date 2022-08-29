@@ -1,0 +1,80 @@
+<br><br><br>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-4"></div>
+                    <div class="col-8">
+                        <div id="leftDiv">
+                            <form class="text-center" [formGroup]="editPasswordForm" (ngSubmit)="editPassword()">
+
+                                <h4 class="pt-1 pb-3 mb-5" style="border-bottom: 1px solid black">Change password</h4>
+                                <label for="password">New password</label>
+                                <input type="password" id="password" class="form-control mb-4"
+                                    formControlName="password" autocomplete="off">
+
+                                <label for="rpassword">Re-type new password</label>
+                                <input style="margin-bottom:0px !important" type="password" id="rpassword"
+                                    class="form-control mb-4" formControlName="rpassword" autocomplete="off">
+                                <div style="margin-bottom: 15px; margin-top:none; text-align:center;">
+                                    <span style="color:red; font-size:16px"
+                                        *ngIf="this.editPasswordForm.controls.rpassword.value !== this.editPasswordForm.controls.password.value">Passwords
+                                        do not match</span>
+                                </div>
+
+
+                                <button mdbBtn block="true" class="my-4" type="submit"
+                                    [disabled]="!this.editPasswordForm.valid || this.editPasswordForm.pristine">Go!</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-8 text-left p-0" id="rightDiv">
+            <div class="text-center">
+                <div class="category d-inline-block">
+                    <div class="container mb-3">
+                        <div class="row h-75">
+                            <div class="col-6">
+                                <input [(ngModel)]="searchCodes" type="text" class="form-control w-75 mb-3"
+                                    placeholder="Search">
+                            </div>
+                            <div class="col-6">
+                                <h5 class="float-right">{{loggedOnUser.email}}</h5>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Game Key</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr
+                                *ngFor="let code of codes | codesFilter: {name: searchCodes, date: searchCodes, price: searchCodes, gameKey: searchCodes}; let i=index">
+                                <td>{{i+1}}</td>
+                                <td>{{code.name}}</td>
+                                <td>{{code.price | number : '1.2-2'}}$</td>
+                                <td>{{code.gameKey}}</td>
+                                <td>{{code.date}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<app-pc-detail-modal #pcDetailModal></app-pc-detail-modal>

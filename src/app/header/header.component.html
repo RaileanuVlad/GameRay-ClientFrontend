@@ -1,0 +1,82 @@
+<nav class="navbar navbar-dark bg-dark p-0">
+
+
+  <h1 class="navbar-brand m-0">
+    <a routerLink="/home" class="nav-link">GameRay</a>
+  </h1>
+
+  <div>
+    <ul class="nav">
+      
+      <li class="nav-item" routerLinkActive="active-page">
+        <a class="nav-link" routerLink="/pc">
+          <i class="fa-solid fa-keyboard"></i>
+          PC
+        </a>
+      </li>
+
+      <li class="nav-item" routerLinkActive="active-page">
+        <a class="nav-link" routerLink="/nintendo">
+          <i class="fa-solid fa-gamepad"></i>
+          Nintendo
+        </a>
+      </li>
+
+      <li class="nav-item" routerLinkActive="active-page">
+        <a class="nav-link" routerLink="/playstation">
+          <i class="fa-brands fa-playstation"></i>
+          PlayStation
+        </a>
+      </li>
+
+      <li class="nav-item" routerLinkActive="active-page">
+        <a class="nav-link" routerLink="/xbox">
+          <i class="fa-brands fa-xbox"></i>
+          Xbox
+        </a>
+      </li>
+
+    </ul>
+  </div>
+  <div>
+    <ul class="nav">
+      <li class="nav-item" routerLinkActive="active-page" *ngIf="!currentUser">
+        <a class="nav-link" (click)="openLogin()">
+          <i class="fa-solid fa-arrow-right-to-bracket"></i>
+          Login
+        </a>
+      </li>
+
+      <li class="nav-item" routerLinkActive="active-page" *ngIf="!currentUser">
+        <a class="nav-link" (click)="openRegister()">
+          <i class="fa-solid fa-user-plus"></i>
+          Register
+        </a>
+      </li>
+
+      <li class="nav-item" routerLinkActive="active-page" *ngIf="currentUser">
+        <a class="nav-link" (click)="openCart()">
+          <i class="fa-solid fa-cart-shopping"></i>
+          Cart
+        </a>
+      </li>
+
+      <li class="nav-item" routerLinkActive="active-page" *ngIf="currentUser">
+        <a class="nav-link" routerLink="/profile">
+          <i class="fa-solid fa-user"></i>
+          Profile
+        </a>
+      </li>
+
+      <li class="nav-item" routerLinkActive="active-page" *ngIf="currentUser">
+        <a class="nav-link" (click)="logout()">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          Logout
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<app-cart-modal #CartModal></app-cart-modal>
+<app-login-modal #LoginModal></app-login-modal>
+<app-register-modal #RegisterModal></app-register-modal>

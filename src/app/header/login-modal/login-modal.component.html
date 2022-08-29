@@ -1,0 +1,44 @@
+<div bsModal class="modal fade" #LoginModal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="LoginModal"
+  aria-hidden="true">
+  <div id="bigDiv" class="modal-dialog" role="document" *ngIf="loginForm">
+    <div class="modal-content" style="background-color:black">
+
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Login</h4>
+        <button type="button" class="close" (click)="LoginModal.hide()">
+          <i class="fa-solid fa-x"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="login-form">
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" id="loginForm">
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" class="form-control mb-4" formControlName="email" autocomplete="off"
+                placeholder="Enter Email">
+            </div>
+
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" id="password" class="form-control mb-4" formControlName="password"
+                autocomplete="off" placeholder="Enter Password">
+            </div>
+
+            <div class="form-group">
+              <button form="loginForm" mdbBtn block="true" class="my-4" type="submit"
+                [disabled]="!this.loginForm.valid">Go!</button>
+            </div>
+
+            <div class="mb-4" style="text-align:center ">
+              <span *ngIf="loginInvalid" style="color:red; font-size:16px">{{loginMessage}}</span>
+            </div>
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+#leftDiv {
+  padding: 10px;
+  border: 3px solid rgb(80, 185, 255);
+  border-radius: 10px;
+  box-shadow: 0 0 50px rgb(80, 185, 255);
+  color: black !important;
+  background-color: rgb(80, 185, 255);
+}
+
+.card:hover {
+  box-shadow: 0px 0px 50px rgb(80, 185, 255);
+}
+
+.card {
+  box-shadow: 0px 0px 0px rgb(80, 185, 255);
+  transition: box-shadow 0.5s linear;
+}
+
+.card {
+  background-color: rgb(80, 185, 255);
+  border-radius: 5px;
+}
+
+.card:hover {
+  border: 1px solid rgb(80, 185, 255);
+}
+
+img {
+  width: 306px;
+  height: 425px;
+}
